@@ -7,10 +7,10 @@ const textContent = document.body.innerText;
 const encodedContent = encodeURIComponent(textContent);
 
 // Available models
-const availableModels = ["gpt-4o", "gpt-35-turbo-instinct"];
+const availableModels = ["o1-preview", "gpt-4o"];
 
-// Initialize model selection with gpt-4o and gpt-35-turbo-instinct as default
-let selectedModels = ['gpt-4o', 'gpt-35-turbo-instinct'];
+// Initialize model selection
+let selectedModels = ['o1-preview', 'gpt-4o'];
 
 function getSelectedModels() {
     return selectedModels;
@@ -49,8 +49,8 @@ function handleChatResponse(question, isAdvanced = false) {
     appendChatElement(responseContainer, 'your_question', question);
     appendChatElement(additionalResponseContainer, 'your_question', question);
 
-    const mainLoadingElement = appendChatElement(responseContainer, 'agent_response', `${selectedModels[0]}: Loading...`);
-    const additionalLoadingElement = appendChatElement(additionalResponseContainer, 'agent_response', `${selectedModels[1]}: Loading...`);
+    const mainLoadingElement = appendChatElement(responseContainer, 'agent_response', `FinGPT #1: Loading...`);
+    const additionalLoadingElement = appendChatElement(additionalResponseContainer, 'agent_response', `FinGPT #2: Loading...`);
 
     const encodedQuestion = encodeURIComponent(question);
 
@@ -71,15 +71,15 @@ function handleChatResponse(question, isAdvanced = false) {
             const additionalResponse = data.resp[selectedModels[1]];
 
             if (mainResponse.startsWith("The following file(s) are missing")) {
-                mainLoadingElement.innerText = `${selectedModels[0]}: Error - ${mainResponse}`;
+                mainLoadingElement.innerText = `FinGPT #1: Error - ${mainResponse}`;
             } else {
-                mainLoadingElement.innerText = `FinGPT Model #1: ${mainResponse}`;
+                mainLoadingElement.innerText = `FinGPT #2: ${mainResponse}`;
             }
 
             if (additionalResponse.startsWith("The following file(s) are missing")) {
-                additionalLoadingElement.innerText = `${selectedModels[1]}: Error - ${additionalResponse}`;
+                additionalLoadingElement.innerText = `FinGPT #1: Error - ${additionalResponse}`;
             } else {
-                additionalLoadingElement.innerText = `FinGPT Model #2: ${additionalResponse}`;
+                additionalLoadingElement.innerText = `FinGPT #2: ${additionalResponse}`;
             }
 
             document.getElementById('textbox').value = '';
@@ -88,8 +88,8 @@ function handleChatResponse(question, isAdvanced = false) {
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
 
-            mainLoadingElement.innerText = `${selectedModels[0]}: Failed to load response.`;
-            additionalLoadingElement.innerText = `${selectedModels[1]}: Failed to load response.`;
+            mainLoadingElement.innerText = `FinGPT #1: Failed to load response.`;
+            additionalLoadingElement.innerText = `FinGPT #2: Failed to load response.`;
         });
 }
 
