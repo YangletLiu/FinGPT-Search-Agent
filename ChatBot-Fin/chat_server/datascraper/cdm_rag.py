@@ -110,11 +110,11 @@ Answer as thoroughly as possible based on the context provided."""
     response = openai.ChatCompletion.create(
         model=model_name,
         messages=[
-            {'role': 'system', 'content': 'You are a CDM expert providing detailed and accurate answers.'},
+            # {'role': 'system', 'content': 'You are a CDM expert providing detailed and accurate answers.'},
             {'role': 'user', 'content': prompt}
         ],
-        temperature=0.1,  # Lower temperature for more precise answers
-        max_tokens=1500  # Adjust as necessary
+        #temperature=0.1,  # Lower temperature for more precise answers
+        max_completion_tokens=3000  # Adjust as necessary
     )
 
     answer = response['choices'][0]['message']['content']

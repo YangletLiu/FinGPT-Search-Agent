@@ -73,11 +73,11 @@ function handleChatResponse(question, isAdvanced = false) {
             if (mainResponse.startsWith("The following file(s) are missing")) {
                 mainLoadingElement.innerText = `FinGPT #1: Error - ${mainResponse}`;
             } else {
-                mainLoadingElement.innerText = `FinGPT #2: ${mainResponse}`;
+                mainLoadingElement.innerText = `FinGPT #1: ${mainResponse}`;
             }
 
             if (additionalResponse.startsWith("The following file(s) are missing")) {
-                additionalLoadingElement.innerText = `FinGPT #1: Error - ${additionalResponse}`;
+                additionalLoadingElement.innerText = `FinGPT #2: Error - ${additionalResponse}`;
             } else {
                 additionalLoadingElement.innerText = `FinGPT #2: ${additionalResponse}`;
             }
